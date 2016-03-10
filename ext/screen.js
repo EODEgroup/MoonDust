@@ -4,43 +4,43 @@ _o_.add("small-size", 666);
 /* if */
 _o_.add("mobile-portrait", function()
 	{
-		return document.body.offsetWidth < _o_.option("small-size") && document.body.offsetWidth/document.body.offsetHeight <= 0.65;
+		return _o_.isMobile && _o_.screenRect.width < _o_.option("small-size");
 	}
 );
 
 _o_.add("mobile-landscape", function()
 	{
-		return document.body.offsetHeight < _o_.option("small-size") && document.body.offsetWidth/document.body.offsetHeight <= 0.65;
+		return _o_.isMobile && _o_.screenRect.height < _o_.option("small-size");
 	}
 );
 
 _o_.add("small-width", function()
 	{
-		return document.body.offsetWidth < _o_.option("small-size");
+		return _o_.screenRect.width < _o_.option("small-size");
 	}
 );
 
 _o_.add("small-height", function()
 	{
-		return document.body.offsetHeight < _o_.option("small-size");
+		return _o_.screenRect.height < _o_.option("small-size");
 	}
 );
 
 _o_.add("mobile", function()
 	{
-		return document.body.offsetWidth < _o_.option("small-size") || document.body.offsetHeight < _o_.option("small-size");
+		return _o_.isMobile && (_o_.screenRect.width < _o_.option("small-size") || _o_.screenRect.height < _o_.option("small-size"));
 	}
 );
 
 _o_.add("screen", function()
 	{
-		return document.body.offsetWidth >= _o_.option("small-size") && document.body.offsetHeight >= _o_.option("small-size");
+		return _o_.screenRect.width >= _o_.option("small-size") && _o_.screenRect.height >= _o_.option("small-size");
 	}
 );
 
 _o_.add("height > screen", function()
 	{
-		return this.element.offsetHeight > document.body.offsetHeight;
+		return this.element.offsetHeight > _o_.screenRect.height;
 	}
 );
 
@@ -69,7 +69,7 @@ _o_.add("screen-anchor", function(name, value)
 /* action */
 _o_.add("height = screen", function(valid, velse)
 	{
-		this.element.style.height = valid ? document.body.offsetHeight+"px" : velse;
+		this.element.style.height = valid ? _o_.screenRect.height+"px" : velse;
 	}
 );
 

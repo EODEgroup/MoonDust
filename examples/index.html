@@ -7,13 +7,104 @@
 
         <title>example</title>
 
-        <script src="http://eode.studio/storage/ext/plugins.jquery.js"></script>
-        <script src="http://eode.studio/storage/ext/underscore.js"></script>
-        <script src="http://eode.studio/storage/ext/load-images.js"></script>
         <script src="../MoonDust.js"></script>
+        <script>
+            // append extensions to moondust
+
+            var initWithDocument;
+            initWithDocument = function()
+            {
+                if( document.readyState != "complete" )
+                {
+                    setTimeout(initWithDocument, 50);
+                    return;
+                }
+
+                _o_.appendScript("ext/common.js");
+                _o_.appendScript("ext/screen.js");
+                _o_.appendScript("ext/dependancies.js");
+                _o_.appendScript("ext/fonts.js");
+                testHelpers();
+            };
+            initWithDocument();
+
+            // test helpers
+            function testHelpers()
+            {
+                // actions
+                _o_.add("innerHTML-replace", function(valid, value)
+                    {
+                        if( valid ) this.element.innerHTML = value;
+                    }
+                );
+
+                _o_.add("innerHTML-font-size", function()
+                    {
+                        this.element.innerHTML = getComputedStyle(this.element).fontSize;
+                    }
+                );
+
+                // profiles
+                _o_.Profile("my-font-size-is")
+                    .add(new _o_.Constraint(function()
+                        {
+                            this.do("innerHTML-font-size");
+                        })
+                    )
+                ;
+
+                _o_.Profile("my-type")
+                    .add(new _o_.Constraint(function(){
+                        this.if("screen").do("innerHTML-replace", "screen");
+                    }))
+                    .add(new _o_.Constraint(function(){
+                        this.if("small-width").do("innerHTML-replace", "small-width");
+                    }))
+                    .add(new _o_.Constraint(function(){
+                        this.if("small-height").do("innerHTML-replace", "small-height");
+                    }))
+                    .add(new _o_.Constraint(function(){
+                        this.if("mobile-portrait").do("innerHTML-replace", "mobile-portrait");
+                    }))
+                    .add(new _o_.Constraint(function(){
+                        this.if("mobile-landscape").do("innerHTML-replace", "mobile-landscape");
+                    }))
+                ;
+            }
+        </script>
+
+        <style>
+            .hide{ opacity: 0; transition: opacity 1s ease; }
+            .visible{ opacity: 1; }
+
+            body{ transition: background 0.3s ease; }
+            body.red{ background: #fcc;  }
+            body.green{ background: #cfc;  }
+            body.blue{ background: #ccf;  }
+            body.yellow{ background: #ffc;  }
+            body.purple{ background: #fcf;  }
+        </style>
 
     </head>
-    <body _o_="font-master">
-        
+    <body _o_="font-master, screen-anchor-class" data-anchor-name="bg">
+        <div>Type: <span _o_="my-type"></span></div>
+        <br/>
+        <div style="font-size: 100%">font-size: 100% => <span _o_="my-font-size-is"></span></div>
+        <div style="font-size: 120%">font-size: 120% => <span _o_="my-font-size-is"></span></div>
+        <div style="font-size: 140%">font-size: 140% => <span _o_="my-font-size-is"></span></div>
+
+        <div style="position: absolute; right: 0; top: 0; border: 1px dashed #222; font-size: 150%;">
+            <div id="swapTest" style="float: left;">SCR<br/>ILE</div>
+            <div _o_="small-width-swap" data-swap="#swapTest" style="float: left;">EEN<br/>MOB</div>
+        </div>
+
+        <div style="height: 1500px; width: 400px; background: #aaa;">
+            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="red" style="height: 20%; width: 100%; background: #faa;"></div>
+            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="green" style="height: 20%; width: 100%; background: #afa;"></div>
+            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="blue" style="height: 20%; width: 100%; background: #aaf;"></div>
+            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="yellow" style="height: 20%; width: 100%; background: #ffa;"></div>
+            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="purple" style="height: 20%; width: 100%; background: #faf;"></div>
+        </div>
+
     </body>
 </html>
