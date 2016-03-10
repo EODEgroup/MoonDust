@@ -254,5 +254,4 @@ _o_.Profile("small-width-swap")
 			this.if("small-width").do("swap-position", document.querySelector(this.element.dataset.swap));
 		})
 	)
-	.alive()
 ;

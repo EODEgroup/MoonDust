@@ -1,4 +1,11 @@
 # MoonDust
 Javascript library that allows you to structure resize events
 
-ne pas oublier -> not (!)
+
+[FR version](https://github.com/EODEgroup/MoonDust/blob/master/README_fr.md)
+
+
+
+
+
+EN version -> TODO
