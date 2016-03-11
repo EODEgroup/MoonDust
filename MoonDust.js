@@ -401,9 +401,10 @@
 	var mdpath = "";
 	for( var i = 0; i < scripts.length; ++i )
 	{
-		if( scripts[i].src.search("/MoonDust") >= 0 )
+		var scriptsrc = scripts[i].src.toLowerCase();
+		if( scriptsrc.search("/moondust.") >= 0 )
 		{
-			mdpath = scripts[i].src.replace("MoonDust.js", "").replace("MoonDust.min.js", "");
+			mdpath = scripts[i].src.substr(0, scriptsrc.search("/moondust."))+'/';
 			break;
 		}
 	}
