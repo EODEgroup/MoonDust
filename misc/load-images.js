@@ -32,7 +32,7 @@ misc.loadImage = function(elementOrUrl, dataset, callback)
 {
 	var img = new Image;
 	
-	if( _.isFunction(callback) )
+	if( typeof callback == "function" )
 	{
 		img.onload = callback;
 	}
@@ -47,6 +47,23 @@ misc.loadImage = function(elementOrUrl, dataset, callback)
 /* if */
 
 /* actions */
+_o_.add("autoload-img", function(valid, background)
+	{
+		if( valid )
+		{
+			var element = this.element;
+			misc.loadImages([this.element], "src", function()
+				{
+					if( background ) element.style.backgroundImage = "url(\""+element.dataset.src+"\")";
+					else element.attributes.src.value = element.dataset.src;
+
+					element.classList.add("visible");
+				}
+			);
+		}
+	}
+);
+
 _o_.add("autoload-imgs", function(valid, background)
 	{
 		if( valid )
