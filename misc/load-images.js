@@ -20,12 +20,12 @@ misc.loadImages = function(elements, dataset, callback, percentLoaded)
 
 						percentLoaded(Math.round((elements.length-loaded)*100/elements.length));
 
-						if( loaded <= 0 && _.isFunction(callback) ) callback((new Date).getTime()-loadTime, sizes);
+						if( loaded <= 0 && typeof callback == "function" ) callback((new Date).getTime()-loadTime, sizes);
 					}
 				);
 			}
 		}
-	)(elements, dataset, callback, _.isFunction(percentLoaded) ? percentLoaded : function(){});
+	)(elements, dataset, callback, typeof percentLoaded == "function" ? percentLoaded : function(){});
 };
 
 misc.loadImage = function(elementOrUrl, dataset, callback)
