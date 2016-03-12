@@ -219,6 +219,8 @@ _o_.onAfterRefresh.push(MyFunction);
 // refresh all nodes
 _o_.refresh();
 
+// use if fonction in code
+_o_.if("my-cond");
 
 // options
 _o_.option("my-option"); // get option value
