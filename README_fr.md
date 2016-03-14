@@ -11,7 +11,7 @@ Le but est de définir des comportements (Profil) et de pouvoir les appliquer su
 ```
 L'élément subira alors les modifications comme défini dans "my profile".
 
-Un profil est un ensemble de contraintes, se sont ces contraintes qui déterminent les actions réalisées par le profile sur l'élément :
+Un profil est un ensemble de contraintes, se sont ces contraintes qui déterminent les actions réalisées par le profil sur l'élément :
 ```javascript
 _o_.Profile("my profile").add(myConstraint1).add(myConstraint2);
 ```
@@ -38,7 +38,7 @@ new _o_.Constraint(function(){
 })
 ```
 
-On pourra donc créer le profile comme ceci :
+On pourra donc créer le profil comme ceci :
 ```javascript
 _o_.Profile("my profile")
 	.add(new _o_.Constraint(function()
