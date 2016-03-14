@@ -2,7 +2,52 @@
 Bibliothèque javascript de structuration des events "resize"
 
 ## Introduction
-"resize", ce fameux événement dont on essaie à chaque foi de se passer et pourtant malheureusement indispensable dans la plupart des sites responsives. MoonDust est une bibliothèque javascript conçu dans le but de structurer ces événements et poussant le principe au delà du classique script appliqué à chaque changement de taille. Il permet de scipter des conditions et actions complexes sur le redimensionnement ou le scroll et les associer à un élément par la simple mise en place d'un ou plusieurs profiles sur un élément.
+"resize", ce fameux événement dont on essaie à chaque foi de se passer et pourtant malheureusement indispensable dans la plupart des sites. MoonDust est une bibliothèque javascript conçu dans le but de structurer ces événements et poussant le principe au delà du classique script appliqué à chaque changement de taille. Il permet de scripter des conditions et actions complexes sur le redimensionnement ou le scroll et les associer à un élément par la simple mise en place d'un ou plusieurs profiles.
+
+## Concepts
+Le but est de définir des comportements (Profil) et de pouvoir les appliquer sur n'importe quel Noeud directement dnas le HTML :
+```HTML
+<div _o_="my profile">My test</div>
+```
+L'élément subira alors les modifications comme défini dans "my profile".
+
+Un profil est un ensemble de contraintes, se sont ces contraintes qui déterminent les actions réalisées par le profile sur l'élément :
+```javascript
+_o_.Profile("my profile").add(myConstraint1).add(myConstraint2);
+```
+
+Une contrainte quand à elle est construite à partir de fonctions prédéfinie dans moondust (ou pas... :-°)
+Cela peut être une condition :
+```javascript
+_o_.add("my if", function(){
+	return true;
+});
+```
+Ou une action :
+```javascript
+_o_.add("my action", function(valid){
+	this.element.style.color = valid ? "red" : "blue";
+});
+```
+"valid" représentant le résultat des conditions de la contrainte.
+
+On peut alors créer sa contrainte :
+```javascript
+new _o_.Constraint(function(){
+	this.if("my if").do("my action");
+})
+```
+
+On pourra donc créer le profile comme ceci :
+```javascript
+_o_.Profile("my profile")
+	.add(new _o_.Constraint(function()
+		{
+			this.if("my if").do("my action");
+		})
+	)
+;
+```
 
 ## Exemple basique
 ```javascript
