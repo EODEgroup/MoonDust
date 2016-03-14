@@ -2,21 +2,21 @@
 Bibliothèque javascript de structuration des events "resize"
 
 ## Introduction
-"resize", ce fameux événement dont on essaie à chaque foi de se passer et pourtant malheureusement indispensable dans la plupart des sites. MoonDust est une bibliothèque javascript conçu dans le but de structurer ces événements et poussant le principe au delà du classique script appliqué à chaque changement de taille. Il permet de scripter des conditions et actions complexes sur le redimensionnement ou le scroll et les associer à un élément par la simple mise en place d'un ou plusieurs profiles.
+"resize", ce fameux événement que l'on essaie à chaque fois de se passer et qui reste pourtant malheureusement indispensable pour la plupart des sites. MoonDust est une bibliothèque javascript conçue dans le but de structurer ces événements et pousser le principe au delà du classique script appliqué à chaque changement de taille. Il permet de scripter des conditions et actions complexes sur le redimensionnement ou le scroll et les associer à un élément par la simple mise en place d'un ou de plusieurs profils.
 
 ## Concepts
-Le but est de définir des comportements (Profil) et de pouvoir les appliquer sur n'importe quel Noeud directement dnas le HTML :
+Le but est de définir des comportements (Profil) et de pouvoir les appliquer sur n'importe quel Noeud directement dans le HTML :
 ```HTML
 <div _o_="my profile">My test</div>
 ```
 L'élément subira alors les modifications comme défini dans "my profile".
 
-Un profil est un ensemble de contraintes, se sont ces contraintes qui déterminent les actions réalisées par le profil sur l'élément :
+Un profil est un ensemble de contraintes, ce sont ces contraintes qui déterminent les actions réalisées par le profil sur l'élément :
 ```javascript
 _o_.Profile("my profile").add(myConstraint1).add(myConstraint2);
 ```
 
-Une contrainte quand à elle est construite à partir de fonctions prédéfinie dans moondust (ou pas... :-°)
+Une contrainte quant à elle est construite à partir de fonctions prédéfinies dans moondust.
 Cela peut être une condition :
 ```javascript
 _o_.add("my if", function(){
@@ -78,17 +78,17 @@ _o_.Profile("my-small-class")
 ;
 ```
 
-Maintenant vous pouvez utiliser le profile "my-small-class" sur n'importe quel élément de la page
+Maintenant vous pouvez utiliser le profil "my-small-class" sur n'importe quel élément de la page.
 ```HTML
 <div _o_="my-small-class">My test</div>
 ```
 
-=> largeur fenètre >= 800px
+=> largeur fenêtre >= 800px
 ```HTML
 <div>My test</div>
 ```
 
-=> largeur fenètre < 800px
+=> largeur fenêtre < 800px
 ```HTML
 <div class="small">My test</div>
 ```
@@ -126,8 +126,8 @@ _o_.Profile("my-small-class")
 ;
 ```
 
-## Multiple contraintes
-Permet de cummuler plusieurs comportements sur un même profil.
+## Multiples contraintes
+Permet de cumuler plusieurs comportements sur un même profil.
 ```javascript
 _o_.Profile("my-small-class")
 	.add(new _o_.Constraint(function()
@@ -143,7 +143,7 @@ _o_.Profile("my-small-class")
 ;
 ```
 
-## Multiple actions et conditions
+## Multiples actions et conditions
 ```javascript
 _o_.Profile("my test")
 	.add(new _o_.Constraint(function()
@@ -164,7 +164,7 @@ _o_.Profile("my test")
 ;
 ```
 
-## Multiple profils
+## Multiples profils
 ```HTML
 <div _o_="my first profile, my second profile, my third...">My test</div>
 ```
@@ -253,7 +253,7 @@ _o_.appendScript("http://my.site/my_moondust.js");
 ```
 
 ## Evénements
-Appelé uniquement si la fenètre a changé de taille.
+Appelés uniquement si la fenêtre a changé de taille.
 ```javascript
 _o_.onBeforeRefresh.push(MyFunction);
 _o_.onAfterRefresh.push(MyFunction);
