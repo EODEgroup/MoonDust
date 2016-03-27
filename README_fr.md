@@ -9,6 +9,10 @@ Le but est de définir des comportements (Profil) et de pouvoir les appliquer su
 ```HTML
 <div _o_="my profile">My test</div>
 ```
+ou pour les plus respectueux des normes...
+```HTML
+<div data-_o_="my profile">My test</div>
+```
 L'élément subira alors les modifications comme défini dans "my profile".
 
 Un profil est un ensemble de contraintes, ce sont ces contraintes qui déterminent les actions réalisées par le profil sur l'élément :
@@ -281,4 +285,10 @@ _o_.getReference(myNode, "parent"); // just get parent of myNode
 _o_.getReference(notImportant, ".my-selector"); // alias : document.querySelector(".my-selector")
 _o_.getReference(notImportant, imNotAString); // return imNotAString
 
+```
+
+## Options de base
+```javascript
+_o_.option("refresh-time", 500); // moondust refresh loop
+_o_.option("MD", "_o_"); // moondust node selector (dataset or attribute).
 ```
