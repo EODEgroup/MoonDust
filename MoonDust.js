@@ -413,6 +413,12 @@
 
 	this.appendScript = function(path)
 	{
+		if( !document.body )
+		{
+			setTimeout(function(){ _o_.appendScript(path); }, 50);
+			return;
+		}
+
 		++this.appendScript.prototype.waiting;
 
 		var script = document.createElement("script");

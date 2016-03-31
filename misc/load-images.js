@@ -64,7 +64,7 @@ _o_.add("autoload-img", function(valid, background)
 	}
 );
 
-_o_.add("autoload-imgs", function(valid, background)
+_o_.add("autoload-imgs", function(valid)
 	{
 		if( valid )
 		{
@@ -73,7 +73,7 @@ _o_.add("autoload-imgs", function(valid, background)
 				{
 					for( var i = 0; i < elements.length; ++i )
 					{
-						if( background ) elements[i].style.backgroundImage = "url(\""+elements[i].dataset.src+"\")";
+						if( elements[i].tagName != "IMG" ) elements[i].style.backgroundImage = "url(\""+elements[i].dataset.src+"\")";
 						else elements[i].attributes.src.value = elements[i].dataset.src;
 
 						elements[i].classList.add("visible");
@@ -90,7 +90,7 @@ _o_.Profile("visibility-imgs")
 		{
 			this
 				.if("% visible", function(percent){ return percent > 20; })
-				.do("autoload-imgs", this.element.tagName != "IMG")
+				.do("autoload-imgs")
 				.do("remove", "visibility-imgs")
 			;
 		})
