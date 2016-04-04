@@ -292,3 +292,16 @@ _o_.getReference(notImportant, imNotAString); // return imNotAString
 _o_.option("refresh-time", 500); // moondust refresh loop
 _o_.option("MD", "_o_"); // moondust node selector (dataset or attribute).
 ```
+
+## Autre utilisation possible
+Initialisation de widgets :
+```javascript
+_o_.Profile("parallax")
+	.add(new _o_.Constraint(function()
+		{
+			$(this.element).parallax({imageSrc: this.element.dataset.imageSrc});
+			this.element._o_.remove("parallax");
+		})
+	)
+;
+```
