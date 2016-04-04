@@ -305,3 +305,15 @@ _o_.Profile("parallax")
 	)
 ;
 ```
+
+Play/pause automatique dans un flux
+```javascript
+_o_.Profile("my-video")
+	.add(new _o_.Constraint(function()
+		{
+			this.element.setPause(this.if("% visible", function(percent){ return percent < 50; }).pass);
+		})
+	)
+	.alive()
+;
+```
