@@ -413,7 +413,7 @@
 
 	this.appendScript = function(path)
 	{
-		if( !document.body )
+		if( !document.body || document.readyState != "complete" )
 		{
 			setTimeout(function(){ _o_.appendScript(path); }, 50);
 			return;
