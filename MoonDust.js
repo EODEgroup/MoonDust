@@ -192,7 +192,8 @@
 			// simple function
 			if( typeof name == "function" )
 			{
-				return name.apply(this, args);
+				this.pass = name.apply(this, args);
+				return this;
 			}
 
 			// named function
