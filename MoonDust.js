@@ -255,12 +255,12 @@
 			this.Profile.prototype.listSorted.sort(function(a, b){ return a.prio - b.prio; });
 		}
 
-		for( var i in this.Profile.prototype.listSorted )
+		for( var i = 0; i < this.Profile.prototype.listSorted.length; ++i )
 		{
 			this.Profile.prototype.listSorted[i].refresh();
 		}
 
-		for( var i in this.Profile.prototype.listSorted )
+		for( var i = 0; i < this.Profile.prototype.listSorted.length; ++i )
 		{
 			this.Profile.prototype.listSorted[i].clean();
 		}
