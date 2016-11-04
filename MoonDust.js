@@ -295,7 +295,7 @@
 
 	this.option = function(name, val)
 	{
-		if( val )
+		if( typeof val != "undefined" )
 		{
 			options[name] = val;
 			return val;
