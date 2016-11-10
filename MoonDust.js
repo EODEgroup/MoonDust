@@ -68,7 +68,7 @@
 			{
 				for( var y = 0; y < this.constraints.length; ++y )
 				{
-					if( this.elements[i] )
+					if( this.elements[i] && this.elements[i].isConnected )
 					{
 						this.constraints[y].applyOn(this.elements[i]);
 					}
@@ -80,7 +80,7 @@
 		{
 			for( var i = 0; i < elements.length; ++i )
 			{
-				if( !elements[i] )
+				if( !elements[i] || !elements[i].isConnected )
 				{
 					elements.splice(i, 1);
 					i = 0;
