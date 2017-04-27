@@ -1,3 +1,11 @@
+// debug edge
+if (!Node.prototype.hasOwnProperty("isConnected")) {
+   Object.defineProperty(Node.prototype, "isConnected", {
+       get: function(){ return this.getClientRects().length; },
+       set: function(){}
+   });
+}
+
 !window._o_ && function()
 {
 	var functions = {};
