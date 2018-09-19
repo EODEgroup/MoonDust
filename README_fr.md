@@ -290,6 +290,9 @@ moondust.getReference(myNode, "parent"); // just get parent of myNode
 moondust.getReference(notImportant, ".my-selector"); // alias : document.querySelector(".my-selector")
 moondust.getReference(notImportant, imNotAString); // return imNotAString
 
+// on a Node
+element.moondust.getProfilesName(); // get active profiles
+
 ```
 
 ## Options de base

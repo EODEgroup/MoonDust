@@ -207,10 +207,15 @@ moondust.Profile = function(nameOrEmpty)
                         }
                     },
                     refreshList: {},
-                    removeList: {}
+                    removeList: {},
+                    getProfilesName: () => {
+                        let keys = [];
+                        for (let k in elementOrConstraint.moondust.refreshList) {
+                            keys.push(k);
+                        }
+                        return keys;
+                    }
                 };
-
-                if (elementOrConstraint.done) elementOrConstraint.done("moondust:ready");
             }
 
             elementOrConstraint.moondust.refreshList[this.name] = function(){ refreshElement(elementOrConstraint); };
