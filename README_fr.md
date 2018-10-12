@@ -1,7 +1,11 @@
 # MoonDust
-Bibliothèque javascript de structuration des events "resize"
+Bibliothèque javascript de scripting des events "resize"
 
-(désolé j'ai pas trop le temps de mettre à jour les examples... <<)
+(
+Désolé j'ai pas trop le temps de mettre à jour l'exemple... je sais même pas s'il fonctionne encore. <<
+Mais j'ai mis les derniers scripts que j'ai utilisé dans `examples/examples_random_scripts`.
+Fin septembre j'ai du faire un merge avec une autre version, une sorte de refonte à l'arrache mais ça a l'air de fonctionner correctement...
+)
 
 ## Introduction
 "resize", ce fameux événement que l'on essaie à chaque fois de se passer et qui reste pourtant malheureusement indispensable pour la plupart des sites. MoonDust est une bibliothèque javascript conçue dans le but de structurer ces événements et pousser le principe au delà du classique script appliqué à chaque changement de taille. Il permet de scripter des conditions et actions complexes sur le redimensionnement ou le scroll et les associer à un élément par la simple mise en place d'un ou de plusieurs profils.
@@ -10,9 +14,6 @@ Bibliothèque javascript de structuration des events "resize"
 Le but est de définir des comportements (Profil) et de pouvoir les appliquer sur n'importe quel Noeud directement dans le HTML :
 ```HTML
 <div profile="my profile">My test</div>
-```
-ou pour les plus respectueux des normes...
-```HTML
 <div data-profile="my profile">My test</div>
 ```
 L'élément subira alors les modifications comme défini dans "my profile".

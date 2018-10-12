@@ -1,50 +1,50 @@
 /* options */
-_o_.add("small-size", 666);
+moondust.add("small-size", 666);
 
 /* if */
-_o_.add("mobile-portrait", function()
+moondust.add("mobile-portrait", function()
 	{
-		return _o_.isMobile && _o_.screenRect.width < _o_.option("small-size");
+		return moondust.isMobile && moondust.screenRect.width < moondust.option("small-size");
 	}
 );
 
-_o_.add("mobile-landscape", function()
+moondust.add("mobile-landscape", function()
 	{
-		return _o_.isMobile && _o_.screenRect.height < _o_.option("small-size");
+		return moondust.isMobile && moondust.screenRect.height < moondust.option("small-size");
 	}
 );
 
-_o_.add("small-width", function()
+moondust.add("small-width", function()
 	{
-		return _o_.screenRect.width < _o_.option("small-size");
+		return moondust.screenRect.width < moondust.option("small-size");
 	}
 );
 
-_o_.add("small-height", function()
+moondust.add("small-height", function()
 	{
-		return _o_.screenRect.height < _o_.option("small-size");
+		return moondust.screenRect.height < moondust.option("small-size");
 	}
 );
 
-_o_.add("mobile", function()
+moondust.add("mobile", function()
 	{
-		return _o_.isMobile && (_o_.screenRect.width < _o_.option("small-size") || _o_.screenRect.height < _o_.option("small-size"));
+		return moondust.isMobile && (moondust.screenRect.width < moondust.option("small-size") || moondust.screenRect.height < moondust.option("small-size"));
 	}
 );
 
-_o_.add("screen", function()
+moondust.add("screen", function()
 	{
-		return _o_.screenRect.width >= _o_.option("small-size") && _o_.screenRect.height >= _o_.option("small-size");
+		return moondust.screenRect.width >= moondust.option("small-size") && moondust.screenRect.height >= moondust.option("small-size");
 	}
 );
 
-_o_.add("height > screen", function()
+moondust.add("height > screen", function()
 	{
-		return this.element.offsetHeight > _o_.screenRect.height;
+		return this.element.offsetHeight > moondust.screenRect.height;
 	}
 );
 
-_o_.add("screen-anchor", function(name, value)
+moondust.add("screen-anchor", function(name, value)
 	{
 		var anchors = document.querySelectorAll("[data-screen-anchor="+name+"]");
 
@@ -67,13 +67,13 @@ _o_.add("screen-anchor", function(name, value)
 );
 
 /* action */
-_o_.add("height = screen", function(valid, velse)
+moondust.add("height = screen", function(valid, velse)
 	{
-		this.element.style.height = valid ? _o_.screenRect.height+"px" : velse;
+		this.element.style.height = valid ? moondust.screenRect.height+"px" : velse;
 	}
 );
 
-_o_.add("screen-anchor-class", function(valid, name)
+moondust.add("screen-anchor-class", function(valid, name)
 	{
 		if( !valid ) return;
 
@@ -95,7 +95,7 @@ _o_.add("screen-anchor-class", function(valid, name)
 				selectClass = anchors[i].dataset.anchorClass;
 			}
 		}
-		
+
 		for( var i = 0; i < classes.length; ++i )
 		{
 			this.element.classList[classes[i] == selectClass ? "add" : "remove"](classes[i]);
@@ -104,8 +104,8 @@ _o_.add("screen-anchor-class", function(valid, name)
 );
 
 /* profile */
-_o_.Profile("screen-anchor-class")
-	.add(new _o_.Constraint(function()
+moondust.Profile("screen-anchor-class")
+	.add(new moondust.Constraint(function()
 		{
 			this.do("screen-anchor-class", this.element.dataset.anchorName);
 		})

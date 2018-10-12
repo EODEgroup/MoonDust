@@ -1,53 +1,53 @@
 /* if */
-_o_.add("width > height", function()
+moondust.add("width > height", function()
 	{
 		return this.element.clientWidth > this.element.clientHeight;
 	}
 );
 
-_o_.add("width < height", function()
+moondust.add("width < height", function()
 	{
 		return this.element.clientWidth < this.element.clientHeight;
 	}
 );
 
-_o_.add("width > parent", function()
+moondust.add("width > parent", function()
 	{
 		return this.element.clientHeight > this.element.parentNode.clientHeight;
 	}
 );
 
-_o_.add("height > parent", function()
+moondust.add("height > parent", function()
 	{
 		return this.element.clientHeight > this.element.parentNode.clientHeight;
 	}
 );
 
-_o_.add("parent.h > parent.w", function()
+moondust.add("parent.h > parent.w", function()
 	{
 		return this.element.parentNode.clientHeight > this.element.parentNode.clientWidth;
 	}
 );
 
-_o_.add("parent.h < parent.w", function()
+moondust.add("parent.h < parent.w", function()
 	{
 		return this.element.parentNode.clientHeight < this.element.parentNode.clientWidth;
 	}
 );
 
-_o_.add("% visible", function(compare)
+moondust.add("% visible", function(compare)
 	{
 		var rect = this.element.getClientRects()[0];
 		var totalArea = rect.width*rect.height;
 
 		var actualHeight = 0;
 		if( rect.top < 0 ) actualHeight += rect.top;
-		if( _o_.screenRect.height-rect.bottom < 0 ) actualHeight += (_o_.screenRect.height-rect.bottom);
+		if( moondust.screenRect.height-rect.bottom < 0 ) actualHeight += (moondust.screenRect.height-rect.bottom);
 		actualHeight += rect.height;
 
 		var actualWidth = 0;
 		if( rect.left < 0 ) actualWidth += rect.left;
-		if( _o_.screenRect.right-rect.right < 0 ) actualWidth += (_o_.screenRect.right-rect.right);
+		if( moondust.screenRect.right-rect.right < 0 ) actualWidth += (moondust.screenRect.right-rect.right);
 		actualWidth += rect.width;
 
 		var actualArea = actualWidth*actualHeight;
@@ -57,23 +57,23 @@ _o_.add("% visible", function(compare)
 );
 
 /* actions */
-_o_.add("height-ratio", function(valid, ref, style, ratio)
+moondust.add("height-ratio", function(valid, ref, style, ratio)
 	{
 		if( !valid ) return;
 
-		this.element.style[style] = (_o_.getReference(this.element, ref).clientHeight*ratio)+"px";
+		this.element.style[style] = (moondust.getReference(this.element, ref).clientHeight*ratio)+"px";
 	}
 );
 
-_o_.add("width-ratio", function(valid, ref, style, ratio)
+moondust.add("width-ratio", function(valid, ref, style, ratio)
 	{
 		if( !valid ) return;
 
-		this.element.style[style] = (_o_.getReference(this.element, ref).clientWidth*ratio)+"px";
+		this.element.style[style] = (moondust.getReference(this.element, ref).clientWidth*ratio)+"px";
 	}
 );
 
-_o_.add("middle", function(valid)
+moondust.add("middle", function(valid)
 	{
 		if( !valid ) return;
 
@@ -97,7 +97,7 @@ _o_.add("middle", function(valid)
 	}
 );
 
-_o_.add("width = content", function(valid)
+moondust.add("width = content", function(valid)
 	{
 		var w = 0;
 
@@ -124,7 +124,7 @@ _o_.add("width = content", function(valid)
 	}
 );
 
-_o_.add("swap-position", function(valid, other)
+moondust.add("swap-position", function(valid, other)
 	{
 		if( !other ) return;
 
@@ -151,7 +151,7 @@ _o_.add("swap-position", function(valid, other)
 		}
 		else
 		{
-			
+
 			if( sp.previousElementSibling == other )
 			{
 				other.parentNode.insertBefore(other, this.element);
@@ -162,34 +162,34 @@ _o_.add("swap-position", function(valid, other)
 );
 
 /* Profiles */
-_o_.Profile("rect-width")
-	.add(new _o_.Constraint(function()
+moondust.Profile("rect-width")
+	.add(new moondust.Constraint(function()
 		{
 			this.do("height-ratio", this.element.dataset.ref || this.element, "width", this.element.dataset.ratio || 1);
 		})
 	)
 ;
 
-_o_.Profile("rect-height")
-	.add(new _o_.Constraint(function()
+moondust.Profile("rect-height")
+	.add(new moondust.Constraint(function()
 		{
 			this.do("width-ratio", this.element, "height", this.element.dataset.ratio || 1);
 		})
 	)
 ;
 
-_o_.Profile("container-responsive")
-	.add(new _o_.Constraint(function()
+moondust.Profile("container-responsive")
+	.add(new moondust.Constraint(function()
 		{
 			this.if("height > screen").do("height = screen", null);
 		})
 	)
 ;
 
-_o_.Profile("container-ratio")
-	.add(new _o_.Constraint(function()
+moondust.Profile("container-ratio")
+	.add(new moondust.Constraint(function()
 		{
-			if( _o_.if("! small-width") )
+			if( moondust.if("! small-width") )
 			{
 				this.element.style.width = "100%";
 
@@ -205,9 +205,9 @@ _o_.Profile("container-ratio")
 			}
 		})
 	)
-	.add(new _o_.Constraint(function()
+	.add(new moondust.Constraint(function()
 		{
-			if( _o_.if("! small-width") )
+			if( moondust.if("! small-width") )
 			{
 				this
 					.if("width > parent")
@@ -218,24 +218,24 @@ _o_.Profile("container-ratio")
 	)
 ;
 
-_o_.Profile("container-middle")
-	.add(new _o_.Constraint(function()
+moondust.Profile("container-middle")
+	.add(new moondust.Constraint(function()
 		{
 			this.do("middle");
 		})
 	)
 ;
 
-_o_.Profile("container-slider")
-	.add(new _o_.Constraint(function()
+moondust.Profile("container-slider")
+	.add(new moondust.Constraint(function()
 		{
 			this.do("width = content");
 		})
 	)
 ;
 
-_o_.Profile("visibility-class")
-	.add(new _o_.Constraint(function()
+moondust.Profile("visibility-class")
+	.add(new moondust.Constraint(function()
 		{
 			var compare = parseInt(this.element.dataset.percent) || 50;
 
@@ -248,8 +248,8 @@ _o_.Profile("visibility-class")
 	.alive()
 ;
 
-_o_.Profile("small-width-swap")
-	.add(new _o_.Constraint(function()
+moondust.Profile("small-width-swap")
+	.add(new moondust.Constraint(function()
 		{
 			this.if("small-width").do("swap-position", document.querySelector(this.element.dataset.swap));
 		})

@@ -14,7 +14,7 @@ misc.loadImages = function(elements, dataset, callback, percentLoaded)
 				misc.loadImage(elements[i], dataset, function(e)
 					{
 						--loaded;
-						
+
 						var target = e.originalTarget || e.target || e.path[0];
 						sizes.push({width: target.naturalWidth, height: target.naturalHeight});
 
@@ -31,7 +31,7 @@ misc.loadImages = function(elements, dataset, callback, percentLoaded)
 misc.loadImage = function(elementOrUrl, dataset, callback)
 {
 	var img = new Image;
-	
+
 	if( typeof callback == "function" )
 	{
 		img.onload = callback;
@@ -47,7 +47,7 @@ misc.loadImage = function(elementOrUrl, dataset, callback)
 /* if */
 
 /* actions */
-_o_.add("autoload-img", function(valid, background)
+moondust.add("autoload-img", function(valid, background)
 	{
 		if( valid )
 		{
@@ -64,7 +64,7 @@ _o_.add("autoload-img", function(valid, background)
 	}
 );
 
-_o_.add("autoload-imgs", function(valid)
+moondust.add("autoload-imgs", function(valid)
 	{
 		if( valid )
 		{
@@ -85,8 +85,8 @@ _o_.add("autoload-imgs", function(valid)
 );
 
 /* profiles */
-_o_.Profile("visibility-imgs")
-	.add(new _o_.Constraint(function()
+moondust.Profile("visibility-imgs")
+	.add(new moondust.Constraint(function()
 		{
 			this
 				.if("% visible", function(percent){ return percent > 20; })

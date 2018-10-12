@@ -20,10 +20,10 @@
                     return;
                 }
 
-                _o_.appendScript("ext/common.js");
-                _o_.appendScript("ext/screen.js");
-                _o_.appendScript("ext/dependencies.js");
-                _o_.appendScript("ext/fonts.js");
+                moondust.appendScript("ext/common.js");
+                moondust.appendScript("ext/screen.js");
+                moondust.appendScript("ext/dependencies.js");
+                moondust.appendScript("ext/fonts.js");
                 testHelpers();
             };
             initWithDocument();
@@ -32,41 +32,41 @@
             function testHelpers()
             {
                 // actions
-                _o_.add("innerHTML-replace", function(valid, value)
+                moondust.add("innerHTML-replace", function(valid, value)
                     {
                         if( valid ) this.element.innerHTML = value;
                     }
                 );
 
-                _o_.add("innerHTML-font-size", function()
+                moondust.add("innerHTML-font-size", function()
                     {
                         this.element.innerHTML = getComputedStyle(this.element).fontSize;
                     }
                 );
 
                 // profiles
-                _o_.Profile("my-font-size-is")
-                    .add(new _o_.Constraint(function()
+                moondust.Profile("my-font-size-is")
+                    .add(new moondust.Constraint(function()
                         {
                             this.do("innerHTML-font-size");
                         })
                     )
                 ;
 
-                _o_.Profile("my-type")
-                    .add(new _o_.Constraint(function(){
+                moondust.Profile("my-type")
+                    .add(new moondust.Constraint(function(){
                         this.if("screen").do("innerHTML-replace", "screen");
                     }))
-                    .add(new _o_.Constraint(function(){
+                    .add(new moondust.Constraint(function(){
                         this.if("small-width").do("innerHTML-replace", "small-width");
                     }))
-                    .add(new _o_.Constraint(function(){
+                    .add(new moondust.Constraint(function(){
                         this.if("small-height").do("innerHTML-replace", "small-height");
                     }))
-                    .add(new _o_.Constraint(function(){
+                    .add(new moondust.Constraint(function(){
                         this.if("mobile-portrait").do("innerHTML-replace", "mobile-portrait");
                     }))
-                    .add(new _o_.Constraint(function(){
+                    .add(new moondust.Constraint(function(){
                         this.if("mobile-landscape").do("innerHTML-replace", "mobile-landscape");
                     }))
                 ;
@@ -86,24 +86,24 @@
         </style>
 
     </head>
-    <body data-_o_="font-master, screen-anchor-class" data-anchor-name="bg">
-        <div>Type: <span _o_="my-type"></span></div>
+    <body data-profile="font-master, screen-anchor-class" data-anchor-name="bg">
+        <div>Type: <span profile="my-type"></span></div>
         <br/>
-        <div style="font-size: 100%">font-size: 100% => <span _o_="my-font-size-is"></span></div>
-        <div style="font-size: 120%">font-size: 120% => <span _o_="my-font-size-is"></span></div>
-        <div style="font-size: 140%">font-size: 140% => <span _o_="my-font-size-is"></span></div>
+        <div style="font-size: 100%">font-size: 100% => <span profile="my-font-size-is"></span></div>
+        <div style="font-size: 120%">font-size: 120% => <span profile="my-font-size-is"></span></div>
+        <div style="font-size: 140%">font-size: 140% => <span profile="my-font-size-is"></span></div>
 
         <div style="position: absolute; right: 0; top: 0; border: 1px dashed #222; font-size: 150%;">
             <div id="swapTest" style="float: left;">SCR<br/>ILE</div>
-            <div _o_="small-width-swap" data-swap="#swapTest" style="float: left;">EEN<br/>MOB</div>
+            <div profile="small-width-swap" data-swap="#swapTest" style="float: left;">EEN<br/>MOB</div>
         </div>
 
         <div style="height: 1500px; width: 400px; background: #aaa;">
-            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="red" style="height: 20%; width: 100%; background: #faa;"></div>
-            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="green" style="height: 20%; width: 100%; background: #afa;"></div>
-            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="blue" style="height: 20%; width: 100%; background: #aaf;"></div>
-            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="yellow" style="height: 20%; width: 100%; background: #ffa;"></div>
-            <div class="hide" _o_="visibility-class" data-screen-anchor="bg" data-anchor-class="purple" style="height: 20%; width: 100%; background: #faf;"></div>
+            <div class="hide" profile="visibility-class" data-screen-anchor="bg" data-anchor-class="red" style="height: 20%; width: 100%; background: #faa;"></div>
+            <div class="hide" profile="visibility-class" data-screen-anchor="bg" data-anchor-class="green" style="height: 20%; width: 100%; background: #afa;"></div>
+            <div class="hide" profile="visibility-class" data-screen-anchor="bg" data-anchor-class="blue" style="height: 20%; width: 100%; background: #aaf;"></div>
+            <div class="hide" profile="visibility-class" data-screen-anchor="bg" data-anchor-class="yellow" style="height: 20%; width: 100%; background: #ffa;"></div>
+            <div class="hide" profile="visibility-class" data-screen-anchor="bg" data-anchor-class="purple" style="height: 20%; width: 100%; background: #faf;"></div>
         </div>
 
     </body>
