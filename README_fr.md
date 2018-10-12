@@ -48,11 +48,9 @@ new moondust.Constraint(function(){
 On pourra donc créer le profil comme ceci :
 ```javascript
 moondust.Profile("my profile")
-	.add(new moondust.Constraint(function()
-		{
-			this.if("my if").do("my action");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.if("my if").do("my action");
+	}))
 ;
 ```
 
@@ -62,26 +60,20 @@ moondust.Profile("my profile")
 moondust.add("small-size", 800);
 
 // add a function (condition)
-moondust.add("mobile-portrait", function()
-	{
-		return moondust.isMobile && moondust.screenRect.width < moondust.option("small-size");
-	}
-);
+moondust.add("mobile-portrait", function() {
+	return moondust.isMobile && moondust.screenRect.width < moondust.option("small-size");
+});
 
 // add a function (action)
-moondust.add("class", function(valid, className)
-	{
-		this.element.classList[valid ? "add" : "remove"](className);
-	}
-);
+moondust.add("class", function(valid, className) {
+	this.element.classList[valid ? "add" : "remove"](className);
+});
 
 // create a Profile
 moondust.Profile("my-small-class")
-	.add(new moondust.Constraint(function()
-		{
-			this.if("mobile-portrait").do("class", "small");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.if("mobile-portrait").do("class", "small");
+	}))
 ;
 ```
 
@@ -103,33 +95,26 @@ Maintenant vous pouvez utiliser le profil "my-small-class" sur n'importe quel é
 ## Négation
 ```javascript
 moondust.Profile("my-small-class")
-	.add(new moondust.Constraint(function()
-		{
-			this.if("!mobile-portrait").do("class", "big");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.if("!mobile-portrait").do("class", "big");
+	}))
 ;
 ```
 
 ## local functions
 ```javascript
 moondust.Profile("my-small-class")
-	.add(new moondust.Constraint(function()
-		{
-			this.if(function()
-				{
-					return moondust.isMobile && moondust.screenRect.width < moondust.option("small-size");
-				}
-			).do(
-				function(valid, arg1, arg2)
-				{
-					this.element.classList[valid ? "add" : "remove"]("small");
-				},
-				"arg1",
-				"arg2"
-			);
+	.add(new moondust.Constraint(function() {
+		this.if(function() {
+			return moondust.isMobile && moondust.screenRect.width < moondust.option("small-size");
 		})
-	)
+		.do(function(valid, arg1, arg2) {
+			this.element.classList[valid ? "add" : "remove"]("small");
+		},
+			"arg1",
+			"arg2"
+		);
+	}))
 ;
 ```
 
@@ -137,37 +122,29 @@ moondust.Profile("my-small-class")
 Permet de cumuler plusieurs comportements sur un même profil.
 ```javascript
 moondust.Profile("my-small-class")
-	.add(new moondust.Constraint(function()
-		{
-			this.if("mobile-portrait").do("class", "small");
-		})
-	)
-	.add(new moondust.Constraint(function()
-		{
-			this.if("!mobile-portrait").do("class", "big");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.if("mobile-portrait").do("class", "small");
+	}))
+	.add(new moondust.Constraint(function() {
+		this.if("!mobile-portrait").do("class", "big");
+	}))
 ;
 ```
 
 ## Multiples actions et conditions
 ```javascript
 moondust.Profile("my test")
-	.add(new moondust.Constraint(function()
-		{
-			this
-				.if("!mobile-portrait")
-				.if("test")
-				.do(function(valid)
-					{
-						if( valid )
-						{
-							console.info("screen width > 800px and test is valid !");
-						}
+	.add(new moondust.Constraint(function() {
+		this
+			.if("!mobile-portrait")
+			.if("test")
+			.do(function(valid) {
+					if (valid) {
+						console.info("screen width > 800px and test is valid !");
 					}
-				);
-		})
-	)
+				}
+			);
+	}))
 ;
 ```
 
@@ -180,14 +157,11 @@ moondust.Profile("my test")
 ```javascript
 // add a class "visible" when element is visible > 50%
 moondust.Profile("visibility-class")
-	.add(new moondust.Constraint(function()
-		{
+	.add(new moondust.Constraint(function() {
 			this
 				.if("% visible", function(percent){ return percent > 50; })
 				.do("class", "visible");
-			;
-		})
-	)
+	}))
 	.alive()
 ;
 ```
@@ -213,19 +187,15 @@ moondust.Profile("visibility-class")
 document.querySelector("#myElement").moondust.remove("my profile");
 
 // with action
-moondust.add("remove", function(valid, name)
-	{
-		if( valid ) this.element.moondust.remove(name);
-	}
-);
+moondust.add("remove", function(valid, name) {
+	if( valid ) this.element.moondust.remove(name);
+});
 
 // add a class when MoonDust is loaded and remove profile
 moondust.Profile("moondust-loaded")
-	.add(new moondust.Constraint(function()
-		{
-			this.do("class", "moondust-loaded").do("remove", "moondust-loaded");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.do("class", "moondust-loaded").do("remove", "moondust-loaded");
+	}))
 ;
 ```
 
@@ -293,7 +263,6 @@ moondust.getReference(notImportant, imNotAString); // return imNotAString
 
 // on a Node
 element.moondust.getProfilesName(); // get active profiles
-
 ```
 
 ## Options de base
@@ -306,23 +275,19 @@ moondust.option("MD", "moondust"); // moondust node selector (dataset or attribu
 Initialisation de widgets :
 ```javascript
 moondust.Profile("parallax")
-	.add(new moondust.Constraint(function()
-		{
-			$(this.element).parallax({imageSrc: this.element.dataset.imageSrc});
-			this.element.moondust.remove("parallax");
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		$(this.element).parallax({imageSrc: this.element.dataset.imageSrc});
+		this.element.moondust.remove("parallax");
+	}))
 ;
 ```
 
 Play/pause automatique dans un flux
 ```javascript
 moondust.Profile("my-video")
-	.add(new moondust.Constraint(function()
-		{
-			this.element.setPause(this.if("% visible", function(percent){ return percent < 50; }).pass);
-		})
-	)
+	.add(new moondust.Constraint(function() {
+		this.element.setPause(this.if("% visible", function(percent){ return percent < 50; }).pass);
+	}))
 	.alive()
 ;
 ```
