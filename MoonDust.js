@@ -359,8 +359,16 @@ moondust.refresh = function()
 
     if( !moondust.Profile.prototype.listSorted )
     {
+        // sort profiles
         moondust.Profile.prototype.listSorted = values(moondust.Profile.prototype.list);
         moondust.Profile.prototype.listSorted.sort(function(a, b){ return a.prio - b.prio; });
+
+        // sort alive array
+        moondust.Profile.prototype.aliveList.sort(function(a, b)
+            {
+                return moondust.Profile.prototype.list[a].prio - moondust.Profile.prototype.list[b].prio;
+            }
+        );
     }
 
     for( var i = 0; i < moondust.Profile.prototype.listSorted.length; ++i )
