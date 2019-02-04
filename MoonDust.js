@@ -137,6 +137,7 @@ moondust.Profile = function(nameOrEmpty)
 
     var elements = this.elements;
     var constraints = this.constraints;
+    var onRemoveFunc = null;
 
     this.refreshElement = function(element)
     {
@@ -150,6 +151,7 @@ moondust.Profile = function(nameOrEmpty)
     this.removeElement = function(element)
     {
         elements[elements.indexOf(element)] = null;
+        onRemoveFunc && onRemoveFunc.call(this, element);
     };
     var removeElement = this.removeElement;
 
@@ -173,7 +175,9 @@ moondust.Profile = function(nameOrEmpty)
         {
             if( !elements[i] || !elements[i].isConnected )
             {
+                var elem = elements[i];
                 elements.splice(i, 1);
+                onRemoveFunc && onRemoveFunc.call(this, elem);
                 i = 0;
             }
         }
@@ -251,6 +255,10 @@ moondust.Profile = function(nameOrEmpty)
         moondust.Profile.prototype.listSorted = false;
 
         return this;
+    };
+
+    this.removed = function(func) {
+        onRemoveFunc = func;
     };
 };
 moondust.Profile.prototype.list = {};

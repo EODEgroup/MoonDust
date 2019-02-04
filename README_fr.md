@@ -181,6 +181,18 @@ moondust.Profile("visibility-class")
 ;
 ```
 
+## Event (suppression profile)
+Appel une fonction lorsqu'un profile est supprimé.
+Peut être causé par la suppression d'un Node, à condition que moondust.refresh soit appelé.
+```javascript
+moondust.Profile("visibility-class")
+    .add(aConstraint)
+    .removed(function(element) {
+        ...
+    })
+;
+```
+
 ## Suppression d'un profil
 ```javascript
 // with node
