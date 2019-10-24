@@ -478,6 +478,11 @@ moondust.getReference = function(target, ref)
             return target.parentNode;
         }
 
+        if( ref == "this" )
+        {
+            return target;
+        }
+
         if( ref.substr(0, 5) == "this(" )
         {
             return target.querySelector(ref.substr(5, ref.length-6));
